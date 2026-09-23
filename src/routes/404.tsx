@@ -1,0 +1,2 @@
+import { createFileRoute } from "@tanstack/react-router"; import { NotFoundPage } from "@/components/content/static-pages";
+export const Route=createFileRoute("/404")({head:()=>({meta:[{title:"404 — GAMEPULSE"},{name:"description",content:"This page could not be found."},{property:"og:title",content:"404 — GAMEPULSE"},{property:"og:description",content:"This page could not be found."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"},{name:"robots",content:"noindex"}],links:[{rel:"canonical",href:"/404"}]}),component:NotFoundPage});

@@ -1,0 +1,2 @@
+import { createFileRoute } from "@tanstack/react-router"; import { ContactPage } from "@/components/content/static-pages";
+export const Route=createFileRoute("/contact")({head:()=>({meta:[{title:"Contact GAMEPULSE"},{name:"description",content:"Contact the GAMEPULSE editorial team."},{property:"og:title",content:"Contact GAMEPULSE"},{property:"og:description",content:"Contact the GAMEPULSE editorial team."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}],links:[{rel:"canonical",href:"/contact"}]}),component:ContactPage});

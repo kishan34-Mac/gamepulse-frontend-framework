@@ -10,33 +10,291 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as R404RouteImport } from './routes/404'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DisclaimerRouteImport } from './routes/disclaimer'
+import { Route as EsportsRouteImport } from './routes/esports'
+import { Route as GuidesRouteImport } from './routes/guides'
+import { Route as MobileGamingRouteImport } from './routes/mobile-gaming'
+import { Route as NewsRouteImport } from './routes/news'
+import { Route as PcGamingRouteImport } from './routes/pc-gaming'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
+import { Route as ReviewsRouteImport } from './routes/reviews'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as EsportsSlugRouteImport } from './routes/esports.$slug'
+import { Route as GamesSlugRouteImport } from './routes/games.$slug'
+import { Route as GuidesSlugRouteImport } from './routes/guides.$slug'
+import { Route as MobileGamingSlugRouteImport } from './routes/mobile-gaming.$slug'
+import { Route as NewsSlugRouteImport } from './routes/news.$slug'
+import { Route as PcGamingSlugRouteImport } from './routes/pc-gaming.$slug'
+import { Route as ReviewsSlugRouteImport } from './routes/reviews.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const R404Route = R404RouteImport.update({
+  id: '/404',
+  path: '/404',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DisclaimerRoute = DisclaimerRouteImport.update({
+  id: '/disclaimer',
+  path: '/disclaimer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EsportsRoute = EsportsRouteImport.update({
+  id: '/esports',
+  path: '/esports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuidesRoute = GuidesRouteImport.update({
+  id: '/guides',
+  path: '/guides',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MobileGamingRoute = MobileGamingRouteImport.update({
+  id: '/mobile-gaming',
+  path: '/mobile-gaming',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsRoute = NewsRouteImport.update({
+  id: '/news',
+  path: '/news',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PcGamingRoute = PcGamingRouteImport.update({
+  id: '/pc-gaming',
+  path: '/pc-gaming',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReviewsRoute = ReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EsportsSlugRoute = EsportsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => EsportsRoute,
+} as any)
+const GamesSlugRoute = GamesSlugRouteImport.update({
+  id: '/games/$slug',
+  path: '/games/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuidesSlugRoute = GuidesSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => GuidesRoute,
+} as any)
+const MobileGamingSlugRoute = MobileGamingSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => MobileGamingRoute,
+} as any)
+const NewsSlugRoute = NewsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => NewsRoute,
+} as any)
+const PcGamingSlugRoute = PcGamingSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => PcGamingRoute,
+} as any)
+const ReviewsSlugRoute = ReviewsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ReviewsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/404': typeof R404Route
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/disclaimer': typeof DisclaimerRoute
+  '/esports': typeof EsportsRouteWithChildren
+  '/guides': typeof GuidesRouteWithChildren
+  '/mobile-gaming': typeof MobileGamingRouteWithChildren
+  '/news': typeof NewsRouteWithChildren
+  '/pc-gaming': typeof PcGamingRouteWithChildren
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/reviews': typeof ReviewsRouteWithChildren
+  '/search': typeof SearchRoute
+  '/terms': typeof TermsRoute
+  '/esports/$slug': typeof EsportsSlugRoute
+  '/games/$slug': typeof GamesSlugRoute
+  '/guides/$slug': typeof GuidesSlugRoute
+  '/mobile-gaming/$slug': typeof MobileGamingSlugRoute
+  '/news/$slug': typeof NewsSlugRoute
+  '/pc-gaming/$slug': typeof PcGamingSlugRoute
+  '/reviews/$slug': typeof ReviewsSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/404': typeof R404Route
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/disclaimer': typeof DisclaimerRoute
+  '/esports': typeof EsportsRouteWithChildren
+  '/guides': typeof GuidesRouteWithChildren
+  '/mobile-gaming': typeof MobileGamingRouteWithChildren
+  '/news': typeof NewsRouteWithChildren
+  '/pc-gaming': typeof PcGamingRouteWithChildren
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/reviews': typeof ReviewsRouteWithChildren
+  '/search': typeof SearchRoute
+  '/terms': typeof TermsRoute
+  '/esports/$slug': typeof EsportsSlugRoute
+  '/games/$slug': typeof GamesSlugRoute
+  '/guides/$slug': typeof GuidesSlugRoute
+  '/mobile-gaming/$slug': typeof MobileGamingSlugRoute
+  '/news/$slug': typeof NewsSlugRoute
+  '/pc-gaming/$slug': typeof PcGamingSlugRoute
+  '/reviews/$slug': typeof ReviewsSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/404': typeof R404Route
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/disclaimer': typeof DisclaimerRoute
+  '/esports': typeof EsportsRouteWithChildren
+  '/guides': typeof GuidesRouteWithChildren
+  '/mobile-gaming': typeof MobileGamingRouteWithChildren
+  '/news': typeof NewsRouteWithChildren
+  '/pc-gaming': typeof PcGamingRouteWithChildren
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/reviews': typeof ReviewsRouteWithChildren
+  '/search': typeof SearchRoute
+  '/terms': typeof TermsRoute
+  '/esports/$slug': typeof EsportsSlugRoute
+  '/games/$slug': typeof GamesSlugRoute
+  '/guides/$slug': typeof GuidesSlugRoute
+  '/mobile-gaming/$slug': typeof MobileGamingSlugRoute
+  '/news/$slug': typeof NewsSlugRoute
+  '/pc-gaming/$slug': typeof PcGamingSlugRoute
+  '/reviews/$slug': typeof ReviewsSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/404'
+    | '/about'
+    | '/contact'
+    | '/disclaimer'
+    | '/esports'
+    | '/guides'
+    | '/mobile-gaming'
+    | '/news'
+    | '/pc-gaming'
+    | '/privacy-policy'
+    | '/reviews'
+    | '/search'
+    | '/terms'
+    | '/esports/$slug'
+    | '/games/$slug'
+    | '/guides/$slug'
+    | '/mobile-gaming/$slug'
+    | '/news/$slug'
+    | '/pc-gaming/$slug'
+    | '/reviews/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/404'
+    | '/about'
+    | '/contact'
+    | '/disclaimer'
+    | '/esports'
+    | '/guides'
+    | '/mobile-gaming'
+    | '/news'
+    | '/pc-gaming'
+    | '/privacy-policy'
+    | '/reviews'
+    | '/search'
+    | '/terms'
+    | '/esports/$slug'
+    | '/games/$slug'
+    | '/guides/$slug'
+    | '/mobile-gaming/$slug'
+    | '/news/$slug'
+    | '/pc-gaming/$slug'
+    | '/reviews/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/404'
+    | '/about'
+    | '/contact'
+    | '/disclaimer'
+    | '/esports'
+    | '/guides'
+    | '/mobile-gaming'
+    | '/news'
+    | '/pc-gaming'
+    | '/privacy-policy'
+    | '/reviews'
+    | '/search'
+    | '/terms'
+    | '/esports/$slug'
+    | '/games/$slug'
+    | '/guides/$slug'
+    | '/mobile-gaming/$slug'
+    | '/news/$slug'
+    | '/pc-gaming/$slug'
+    | '/reviews/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  R404Route: typeof R404Route
+  AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
+  DisclaimerRoute: typeof DisclaimerRoute
+  EsportsRoute: typeof EsportsRouteWithChildren
+  GuidesRoute: typeof GuidesRouteWithChildren
+  MobileGamingRoute: typeof MobileGamingRouteWithChildren
+  NewsRoute: typeof NewsRouteWithChildren
+  PcGamingRoute: typeof PcGamingRouteWithChildren
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  ReviewsRoute: typeof ReviewsRouteWithChildren
+  SearchRoute: typeof SearchRoute
+  TermsRoute: typeof TermsRoute
+  GamesSlugRoute: typeof GamesSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +306,232 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/404': {
+      id: '/404'
+      path: '/404'
+      fullPath: '/404'
+      preLoaderRoute: typeof R404RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/disclaimer': {
+      id: '/disclaimer'
+      path: '/disclaimer'
+      fullPath: '/disclaimer'
+      preLoaderRoute: typeof DisclaimerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/esports': {
+      id: '/esports'
+      path: '/esports'
+      fullPath: '/esports'
+      preLoaderRoute: typeof EsportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides': {
+      id: '/guides'
+      path: '/guides'
+      fullPath: '/guides'
+      preLoaderRoute: typeof GuidesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mobile-gaming': {
+      id: '/mobile-gaming'
+      path: '/mobile-gaming'
+      fullPath: '/mobile-gaming'
+      preLoaderRoute: typeof MobileGamingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/news': {
+      id: '/news'
+      path: '/news'
+      fullPath: '/news'
+      preLoaderRoute: typeof NewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pc-gaming': {
+      id: '/pc-gaming'
+      path: '/pc-gaming'
+      fullPath: '/pc-gaming'
+      preLoaderRoute: typeof PcGamingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reviews': {
+      id: '/reviews'
+      path: '/reviews'
+      fullPath: '/reviews'
+      preLoaderRoute: typeof ReviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/esports/$slug': {
+      id: '/esports/$slug'
+      path: '/$slug'
+      fullPath: '/esports/$slug'
+      preLoaderRoute: typeof EsportsSlugRouteImport
+      parentRoute: typeof EsportsRoute
+    }
+    '/games/$slug': {
+      id: '/games/$slug'
+      path: '/games/$slug'
+      fullPath: '/games/$slug'
+      preLoaderRoute: typeof GamesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides/$slug': {
+      id: '/guides/$slug'
+      path: '/$slug'
+      fullPath: '/guides/$slug'
+      preLoaderRoute: typeof GuidesSlugRouteImport
+      parentRoute: typeof GuidesRoute
+    }
+    '/mobile-gaming/$slug': {
+      id: '/mobile-gaming/$slug'
+      path: '/$slug'
+      fullPath: '/mobile-gaming/$slug'
+      preLoaderRoute: typeof MobileGamingSlugRouteImport
+      parentRoute: typeof MobileGamingRoute
+    }
+    '/news/$slug': {
+      id: '/news/$slug'
+      path: '/$slug'
+      fullPath: '/news/$slug'
+      preLoaderRoute: typeof NewsSlugRouteImport
+      parentRoute: typeof NewsRoute
+    }
+    '/pc-gaming/$slug': {
+      id: '/pc-gaming/$slug'
+      path: '/$slug'
+      fullPath: '/pc-gaming/$slug'
+      preLoaderRoute: typeof PcGamingSlugRouteImport
+      parentRoute: typeof PcGamingRoute
+    }
+    '/reviews/$slug': {
+      id: '/reviews/$slug'
+      path: '/$slug'
+      fullPath: '/reviews/$slug'
+      preLoaderRoute: typeof ReviewsSlugRouteImport
+      parentRoute: typeof ReviewsRoute
+    }
   }
 }
 
+interface EsportsRouteChildren {
+  EsportsSlugRoute: typeof EsportsSlugRoute
+}
+
+const EsportsRouteChildren: EsportsRouteChildren = {
+  EsportsSlugRoute: EsportsSlugRoute,
+}
+
+const EsportsRouteWithChildren =
+  EsportsRoute._addFileChildren(EsportsRouteChildren)
+
+interface GuidesRouteChildren {
+  GuidesSlugRoute: typeof GuidesSlugRoute
+}
+
+const GuidesRouteChildren: GuidesRouteChildren = {
+  GuidesSlugRoute: GuidesSlugRoute,
+}
+
+const GuidesRouteWithChildren =
+  GuidesRoute._addFileChildren(GuidesRouteChildren)
+
+interface MobileGamingRouteChildren {
+  MobileGamingSlugRoute: typeof MobileGamingSlugRoute
+}
+
+const MobileGamingRouteChildren: MobileGamingRouteChildren = {
+  MobileGamingSlugRoute: MobileGamingSlugRoute,
+}
+
+const MobileGamingRouteWithChildren = MobileGamingRoute._addFileChildren(
+  MobileGamingRouteChildren,
+)
+
+interface NewsRouteChildren {
+  NewsSlugRoute: typeof NewsSlugRoute
+}
+
+const NewsRouteChildren: NewsRouteChildren = {
+  NewsSlugRoute: NewsSlugRoute,
+}
+
+const NewsRouteWithChildren = NewsRoute._addFileChildren(NewsRouteChildren)
+
+interface PcGamingRouteChildren {
+  PcGamingSlugRoute: typeof PcGamingSlugRoute
+}
+
+const PcGamingRouteChildren: PcGamingRouteChildren = {
+  PcGamingSlugRoute: PcGamingSlugRoute,
+}
+
+const PcGamingRouteWithChildren = PcGamingRoute._addFileChildren(
+  PcGamingRouteChildren,
+)
+
+interface ReviewsRouteChildren {
+  ReviewsSlugRoute: typeof ReviewsSlugRoute
+}
+
+const ReviewsRouteChildren: ReviewsRouteChildren = {
+  ReviewsSlugRoute: ReviewsSlugRoute,
+}
+
+const ReviewsRouteWithChildren =
+  ReviewsRoute._addFileChildren(ReviewsRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  R404Route: R404Route,
+  AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
+  DisclaimerRoute: DisclaimerRoute,
+  EsportsRoute: EsportsRouteWithChildren,
+  GuidesRoute: GuidesRouteWithChildren,
+  MobileGamingRoute: MobileGamingRouteWithChildren,
+  NewsRoute: NewsRouteWithChildren,
+  PcGamingRoute: PcGamingRouteWithChildren,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
+  ReviewsRoute: ReviewsRouteWithChildren,
+  SearchRoute: SearchRoute,
+  TermsRoute: TermsRoute,
+  GamesSlugRoute: GamesSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

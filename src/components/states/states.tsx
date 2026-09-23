@@ -1,0 +1,6 @@
+import { AlertTriangle, Gamepad2, RotateCcw } from "lucide-react";
+import { Button } from "@/components/ui/button";
+export function LoadingSkeleton(){return <div aria-label="Loading" className="animate-pulse space-y-4"><div className="aspect-[16/7] rounded-md bg-muted"/><div className="h-8 w-2/3 rounded bg-muted"/><div className="h-4 w-full rounded bg-muted"/></div>}
+export const ArticleSkeleton=LoadingSkeleton; export const CardSkeleton=LoadingSkeleton; export const HeroSkeleton=LoadingSkeleton; export const PageSkeleton=LoadingSkeleton;
+export function EmptyState({title="No stories found.",description="Try searching for another game, category or topic."}:{title?:string;description?:string}){return <div className="py-20 text-center"><Gamepad2 className="mx-auto size-10 text-primary"/><h2 className="mt-4 text-3xl font-bold">{title}</h2><p className="mt-2 text-muted-foreground">{description}</p></div>}
+export function ErrorState({retry}:{retry?:()=>void}){return <div className="py-20 text-center"><AlertTriangle className="mx-auto size-10 text-destructive"/><h2 className="mt-4 text-3xl font-bold">Something went wrong.</h2><p className="mt-2 text-muted-foreground">We couldn&apos;t load this story.</p>{retry&&<Button onClick={retry} className="mt-5"><RotateCcw/> Try again</Button>}</div>}

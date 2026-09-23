@@ -1,0 +1,31 @@
+import { Link } from "@tanstack/react-router";
+import type { ReactNode } from "react";
+import { ArrowUpRight, Clock3, Star } from "lucide-react";
+import type { Article, Product } from "@/data/types";
+import { contentService } from "@/services/content-service";
+import { Button } from "@/components/ui/button";
+
+export function ArticleLink({article,className,children}:{article:Article;className?:string;children:ReactNode}) {
+ const props={params:{slug:article.slug},className,children};
+ switch(article.category){
+  case "news": return <Link to="/news/$slug" {...props}/>;
+  case "reviews": return <Link to="/reviews/$slug" {...props}/>;
+  case "guides": return <Link to="/guides/$slug" {...props}/>;
+  case "pc-gaming": return <Link to="/pc-gaming/$slug" {...props}/>;
+  case "mobile-gaming": return <Link to="/mobile-gaming/$slug" {...props}/>;
+  case "esports": return <Link to="/esports/$slug" {...props}/>;
+ }
+}
+export function Meta({article}:{article:Article}) { const author=contentService.getAuthorById(article.authorId); return <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground"><span>{author?.name}</span><span>•</span><time>{new Date(article.publishedAt).toLocaleDateString("en-US",{month:"short",day:"numeric"})}</time><span>•</span><span className="inline-flex items-center gap-1"><Clock3 className="size-3"/>{article.readingTime} min</span></div> }
+export function ArticleCard({article,layout="default"}:{article:Article;layout?:"default"|"horizontal"|"compact"}) {
+ const horizontal=layout==="horizontal";
+ return <article className={horizontal?"group grid grid-cols-[7rem_minmax(0,1fr)] gap-4 border-b border-border pb-5 sm:grid-cols-[11rem_minmax(0,1fr)]":"group"}>
+  {layout!=="compact"&&<ArticleLink article={article} className={`block overflow-hidden rounded-md bg-muted ${horizontal?"aspect-[4/3]":"aspect-[16/10]"}`}><img src={article.image} alt="" loading="lazy" width={640} height={400} className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.035]"/></ArticleLink>}
+  <div className={layout==="default"?"pt-4":""}><p className="eyebrow">{contentService.getCategory(article.category)?.name}</p><h3 className={`${layout==="compact"?"text-xl":"mt-2 text-2xl"} font-bold leading-tight`}><ArticleLink article={article} className="transition-colors hover:text-primary">{article.title}</ArticleLink></h3>{layout!=="compact"&&<p className="mt-2 line-clamp-2 text-sm leading-6 text-muted-foreground">{article.excerpt}</p>}<div className="mt-3"><Meta article={article}/></div></div>
+ </article>
+}
+type CategoryRoute="/news"|"/reviews"|"/guides"|"/pc-gaming"|"/mobile-gaming"|"/esports";
+export function SectionHeading({eyebrow,title,to,label="View all"}:{eyebrow?:string;title:string;to?:CategoryRoute;label?:string}) { return <div className="mb-7 grid grid-cols-[minmax(0,1fr)_auto] items-end gap-4 border-b border-border pb-4"><div className="min-w-0">{eyebrow&&<p className="eyebrow mb-2">{eyebrow}</p>}<h2 className="display-title text-3xl sm:text-5xl">{title}</h2></div>{to&&<Button asChild variant="ghost" className="shrink-0"><Link to={to}>{label}<ArrowUpRight/></Link></Button>}</div> }
+export function ReviewCard({article}:{article:Article}) { const review=contentService.getReviewBySlug(article.slug); const game=review?contentService.getGames().find(g=>g.id===review.gameId):undefined; if(!review||!game)return null; return <article className="group relative overflow-hidden rounded-md border border-border bg-card"><div className="aspect-[4/3] overflow-hidden"><img src={game.cover} alt={`${game.title} game art`} loading="lazy" width={640} height={480} className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.035]"/></div><div className="p-5"><div className="flex items-start justify-between gap-4"><div className="min-w-0"><p className="eyebrow">{game.genre[0]} · {game.platforms[0]}</p><h3 className="mt-2 text-2xl font-bold"><Link to="/reviews/$slug" params={{slug:article.slug}} className="hover:text-primary">{game.title}</Link></h3></div><div className="grid size-16 shrink-0 place-items-center rounded-full border-2 border-score font-display text-xl font-bold text-score">{review.score}</div></div><p className="mt-4 text-sm leading-6 text-muted-foreground">{review.verdict}</p><Link to="/reviews/$slug" params={{slug:article.slug}} className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-primary">Read review <ArrowUpRight className="size-4"/></Link></div></article> }
+export function AffiliateProductCard({product}:{product:Product}) { return <article className="rounded-md border border-border bg-card p-4"><div className="aspect-[4/3] overflow-hidden rounded-sm bg-muted"><img src={product.image} alt={`${product.name} product setup`} loading="lazy" width={480} height={360} className="h-full w-full object-cover"/></div><p className="mt-4 flex items-center gap-1 text-xs text-score"><Star className="size-3 fill-current"/>{product.rating}</p><h3 className="mt-2 text-xl font-bold">{product.name}</h3><p className="mt-1 text-lg font-bold text-foreground">{product.price}</p><p className="mt-2 text-sm leading-6 text-muted-foreground">{product.description}</p><Button className="mt-4 w-full" disabled>Check price <ArrowUpRight/></Button><p className="mt-2 text-center text-[11px] text-muted-foreground">Retail link coming soon</p></article> }
+export function AdSlot({type}:{type:"leaderboard"|"inArticle"|"sidebar"|"inFeed"}) { return <aside aria-label="Advertisement placeholder" className={`grid place-items-center border border-dashed border-border bg-muted/30 text-[10px] uppercase tracking-[.2em] text-muted-foreground ${type==="leaderboard"?"min-h-24":"min-h-40"}`}>Advertisement · {type}</aside> }
