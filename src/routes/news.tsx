@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CategoryPage } from "@/components/content/category-page";
-import { contentService } from "@/services/content-service";
-const slug="news" as const; const category=contentService.getCategory(slug);
-export const Route=createFileRoute("/news")({head:()=>({meta:[{title:`4{category?.name} — GAMEPULSE`},{name:"description",content:category?.description},{property:"og:title",content:`4{category?.name} — GAMEPULSE`},{property:"og:description",content:category?.description},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}],links:[{rel:"canonical",href:"/news"}]}),component:()=> <CategoryPage slug={slug}/>});
+const slug="news" as const;
+export const Route=createFileRoute("/news")({head:()=>({meta:[{title:"Gaming News — GAMEPULSE"},{name:"description",content:"Explore the latest gaming news stories, analysis and guides from GAMEPULSE."},{property:"og:title",content:"Gaming News — GAMEPULSE"},{property:"og:description",content:"Explore the latest gaming news stories, analysis and guides from GAMEPULSE."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}],links:[{rel:"canonical",href:"/news"}]}),component:()=> <CategoryPage slug={slug}/>});
