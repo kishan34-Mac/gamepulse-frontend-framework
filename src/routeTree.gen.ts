@@ -16,6 +16,7 @@ import { Route as MobileGamingRouteImport } from './routes/mobile-gaming'
 import { Route as NewsRouteImport } from './routes/news'
 import { Route as PcGamingRouteImport } from './routes/pc-gaming'
 import { Route as ReviewsRouteImport } from './routes/reviews'
+import { Route as SearchRouteImport } from './routes/search'
 import { Route as EsportsSlugRouteImport } from './routes/esports.$slug'
 import { Route as GamesSlugRouteImport } from './routes/games.$slug'
 import { Route as GuidesSlugRouteImport } from './routes/guides.$slug'
@@ -57,6 +58,11 @@ const PcGamingRoute = PcGamingRouteImport.update({
 const ReviewsRoute = ReviewsRouteImport.update({
   id: '/reviews',
   path: '/reviews',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EsportsSlugRoute = EsportsSlugRouteImport.update({
@@ -103,6 +109,7 @@ export interface FileRoutesByFullPath {
   '/news': typeof NewsRouteWithChildren
   '/pc-gaming': typeof PcGamingRouteWithChildren
   '/reviews': typeof ReviewsRouteWithChildren
+  '/search': typeof SearchRoute
   '/esports/$slug': typeof EsportsSlugRoute
   '/games/$slug': typeof GamesSlugRoute
   '/guides/$slug': typeof GuidesSlugRoute
@@ -119,6 +126,7 @@ export interface FileRoutesByTo {
   '/news': typeof NewsRouteWithChildren
   '/pc-gaming': typeof PcGamingRouteWithChildren
   '/reviews': typeof ReviewsRouteWithChildren
+  '/search': typeof SearchRoute
   '/esports/$slug': typeof EsportsSlugRoute
   '/games/$slug': typeof GamesSlugRoute
   '/guides/$slug': typeof GuidesSlugRoute
@@ -136,6 +144,7 @@ export interface FileRoutesById {
   '/news': typeof NewsRouteWithChildren
   '/pc-gaming': typeof PcGamingRouteWithChildren
   '/reviews': typeof ReviewsRouteWithChildren
+  '/search': typeof SearchRoute
   '/esports/$slug': typeof EsportsSlugRoute
   '/games/$slug': typeof GamesSlugRoute
   '/guides/$slug': typeof GuidesSlugRoute
@@ -154,6 +163,7 @@ export interface FileRouteTypes {
     | '/news'
     | '/pc-gaming'
     | '/reviews'
+    | '/search'
     | '/esports/$slug'
     | '/games/$slug'
     | '/guides/$slug'
@@ -170,6 +180,7 @@ export interface FileRouteTypes {
     | '/news'
     | '/pc-gaming'
     | '/reviews'
+    | '/search'
     | '/esports/$slug'
     | '/games/$slug'
     | '/guides/$slug'
@@ -186,6 +197,7 @@ export interface FileRouteTypes {
     | '/news'
     | '/pc-gaming'
     | '/reviews'
+    | '/search'
     | '/esports/$slug'
     | '/games/$slug'
     | '/guides/$slug'
@@ -203,6 +215,7 @@ export interface RootRouteChildren {
   NewsRoute: typeof NewsRouteWithChildren
   PcGamingRoute: typeof PcGamingRouteWithChildren
   ReviewsRoute: typeof ReviewsRouteWithChildren
+  SearchRoute: typeof SearchRoute
   GamesSlugRoute: typeof GamesSlugRoute
 }
 
@@ -255,6 +268,13 @@ declare module '@tanstack/react-router' {
       path: '/reviews'
       fullPath: '/reviews'
       preLoaderRoute: typeof ReviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/esports/$slug': {
@@ -384,6 +404,7 @@ const rootRouteChildren: RootRouteChildren = {
   NewsRoute: NewsRouteWithChildren,
   PcGamingRoute: PcGamingRouteWithChildren,
   ReviewsRoute: ReviewsRouteWithChildren,
+  SearchRoute: SearchRoute,
   GamesSlugRoute: GamesSlugRoute,
 }
 export const routeTree = rootRouteImport
