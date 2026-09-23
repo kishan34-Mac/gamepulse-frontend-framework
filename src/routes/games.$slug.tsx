@@ -1,0 +1,4 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { GamePage } from "@/components/content/review-game-pages";
+import { contentService } from "@/services/content-service";
+export const Route=createFileRoute("/games/$slug")({head:({params})=>{const g=contentService.getGameBySlug(params.slug);return {meta:[{title:g?`${g.title} Game Hub — GAMEPULSE`:"Game unavailable — GAMEPULSE"},{name:"description",content:g?`Latest news, reviews and guides for ${g.title}.`:"This game could not be found."},{property:"og:title",content:g?`${g.title} Game Hub`:"Game unavailable"},{property:"og:description",content:g?`Latest news, reviews and guides for ${g.title}.`:"This game could not be found."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}],links:[{rel:"canonical",href:`/games/${params.slug}`}]}} ,component:Detail});function Detail(){const {slug}=Route.useParams();return <GamePage slug={slug}/>}

@@ -1,0 +1,4 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { ReviewPage } from "@/components/content/review-game-pages";
+import { contentService } from "@/services/content-service";
+export const Route=createFileRoute("/reviews/$slug")({head:({params})=>{const a=contentService.getArticleBySlug(params.slug);return {meta:[{title:a?`${a.title} — GAMEPULSE`:"Review unavailable — GAMEPULSE"},{name:"description",content:a?.excerpt??"This review could not be found."},{property:"og:title",content:a?.title??"Review unavailable"},{property:"og:description",content:a?.excerpt??"This review could not be found."},{property:"og:type",content:"article"},{name:"twitter:card",content:"summary_large_image"}],links:[{rel:"canonical",href:`/reviews/${params.slug}`}]}} ,component:Detail});function Detail(){const {slug}=Route.useParams();return <ReviewPage slug={slug}/>}

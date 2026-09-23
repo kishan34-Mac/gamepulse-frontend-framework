@@ -1,24 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
-
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
-});
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight, Flame } from "lucide-react";
+import { contentService } from "@/services/content-service";
+import { AdSlot, AffiliateProductCard, ArticleCard, Meta, ReviewCard, SectionHeading } from "@/components/gamepulse/cards";
+import { NewsletterCTA } from "@/components/gamepulse/newsletter";
+import { Button } from "@/components/ui/button";
+export const Route=createFileRoute("/")({head:()=>({meta:[{title:"GAMEPULSE — The Pulse of Gaming"},{name:"description",content:"Premium gaming news, reviews, guides, hardware and esports coverage."},{property:"og:title",content:"GAMEPULSE — The Pulse of Gaming"},{property:"og:description",content:"Premium gaming news, reviews, guides, hardware and esports coverage."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}],links:[{rel:"canonical",href:"/"}]}),component:Home});
+function Home(){const all=contentService.getArticles();const hero=all[0];const reviews=all.filter(a=>a.category==="reviews");return <main><section className="container-page pt-4"><Link to="/news/$slug" params={{slug:hero.slug}} className="group relative block min-h-[34rem] overflow-hidden rounded-md sm:min-h-[42rem]"><img src={hero.image} alt="Neon open-city racing scene" width={1600} height={900} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.025]"/><div className="story-overlay absolute inset-0"/><div className="absolute inset-x-0 bottom-0 max-w-4xl p-6 text-primary-foreground sm:p-12"><p className="eyebrow">Cover story · Gaming news</p><h1 className="mt-4 max-w-4xl font-display text-5xl font-black uppercase leading-[.9] sm:text-7xl lg:text-8xl">{hero.title}</h1><p className="mt-5 max-w-2xl text-base leading-7 text-primary-foreground/80">{hero.excerpt}</p><div className="mt-5"><Meta article={hero}/></div><span className="mt-7 inline-flex items-center gap-2 font-bold">Read story <ArrowRight className="transition-transform group-hover:translate-x-1"/></span></div></Link></section><div className="container-page mt-5 overflow-hidden border-y border-border py-3"><div className="hide-scrollbar flex items-center gap-5 overflow-x-auto whitespace-nowrap text-sm"><span className="flex shrink-0 items-center gap-2 font-bold text-primary"><Flame className="size-4"/> Trending</span>{["GTA 6","Steam","PlayStation","Xbox","Nintendo","Valorant","Minecraft"].map(x=><span key={x} className="shrink-0 text-muted-foreground">{x}</span>)}</div></div><div className="container-page mt-10"><AdSlot type="leaderboard"/></div><section className="container-page py-16"><SectionHeading eyebrow="Fresh from the desk" title="Latest gaming news" to="/news"/><div className="grid gap-8 lg:grid-cols-[1.25fr_.75fr]"><ArticleCard article={all[1]}/><div className="grid gap-5">{all.slice(2,5).map(a=><ArticleCard key={a.id} article={a} layout="horizontal"/>)}</div></div></section><section className="border-y border-border bg-surface py-16"><div className="container-page"><SectionHeading eyebrow="Curated" title="Editor's picks"/><div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4"><div className="md:col-span-2"><ArticleCard article={all[2]}/></div>{all.slice(3,6).map((a,i)=><ArticleCard key={a.id} article={a} layout={i===2?"compact":"default"}/>)}</div></div></section><section className="container-page py-16"><SectionHeading eyebrow="Tested and considered" title="Game reviews" to="/reviews"/><div className="grid gap-6 md:grid-cols-2">{reviews.map(a=><ReviewCard key={a.id} article={a}/>)}</div></section><EditorialBand title="Gaming guides" slug="guides"/><EditorialBand title="PC gaming" slug="pc-gaming" reverse/><EditorialBand title="Mobile gaming" slug="mobile-gaming"/><EditorialBand title="Esports" slug="esports" reverse/><section className="container-page py-16"><SectionHeading eyebrow="Field tested" title="Recommended gaming gear"/><div className="grid gap-6 md:grid-cols-3">{contentService.getProducts().map(p=><AffiliateProductCard key={p.id} product={p}/>)}</div></section><section className="container-page pb-16"><NewsletterCTA/></section></main>}
+function EditorialBand({title,slug,reverse=false}:{title:string;slug:"guides"|"pc-gaming"|"mobile-gaming"|"esports";reverse?:boolean}){const items=contentService.getArticlesByCategory(slug);if(!items.length)return null;return <section className="border-t border-border py-16"><div className="container-page"><SectionHeading title={title} to={`/${slug}`}/><div className={`grid gap-8 lg:grid-cols-[1.2fr_.8fr] ${reverse?"lg:[&>*:first-child]:order-2":""}`}><ArticleCard article={items[0]}/><div className="grid content-start gap-5">{items.slice(1).concat(contentService.getTrendingArticles().slice(0,2)).slice(0,3).map(a=><ArticleCard key={`${slug}-${a.id}`} article={a} layout="horizontal"/>)}</div></div></div></section>}
