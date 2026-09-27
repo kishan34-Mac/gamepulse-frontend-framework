@@ -4,7 +4,7 @@
 
 PREMIUM GAMING MEDIA PLATFORM
 
-COMPLETE FRONTEND MASTER PROMPT FOR LOVABLE
+COMPLETE FRONTEND MASTER SPECIFICATION
 
 Build a complete, premium, production-quality gaming media website frontend called GAMEPULSE.
 
@@ -93,7 +93,7 @@ Do NOT mix backend functionality into Phase 1.
 
 1. TECHNOLOGY
 
-Use Lovable's recommended modern frontend stack.
+Use a recommended modern frontend stack.
 
 Prefer:
 
@@ -2502,7 +2502,7 @@ SEO-ready
 Scalable
 Monetization-ready
 
-🚀 FINAL LOVABLE INSTRUCTION
+🚀 FINAL SPECIFICATION INSTRUCTION
 
 Build the complete GAMEPULSE frontend now.
 
@@ -2548,15 +2548,7 @@ The final result should look like a real, premium gaming media website ready for
 
 🎮 Build GAMEPULSE.
 
-This project was built with [Lovable](https://lovable.dev).
 
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/ab5a36ae-4ec9-4ddd-88a9-20b079c3fa98).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
